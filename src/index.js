@@ -22,6 +22,8 @@ const QuoteItem = styled.div`
   border-radius: 0px 20px 20px 0px;
   font-size: 30px;
   margin: 16px 0px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 function Quote({ quote, index }) {
@@ -31,12 +33,18 @@ function Quote({ quote, index }) {
         <QuoteItem
           ref={provided.innerRef}
           {...provided.draggableProps}
-          {...provided.dragHandleProps}
         >
-          {quote.name}
-          <button>
-            ahlo
-          </button>
+          <div>
+            {quote.name}
+            <button>
+              button to expand
+            </button>
+          </div>
+          <span
+            {...provided.dragHandleProps}
+          >
+            handle to drop
+          </span>
         </QuoteItem>
       )}
     </Draggable>
@@ -74,7 +82,7 @@ function App() {
 
     setState({ quotes });
   }
-
+  console.log('ER:: quotes', state)
   return (
     <Column>
       <DragDropContext onDragEnd={onDragEnd}>
